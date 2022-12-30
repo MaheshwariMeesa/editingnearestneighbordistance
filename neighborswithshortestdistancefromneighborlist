@@ -1,0 +1,16 @@
+import sys
+import os
+import pandas as pd
+import numpy as np
+
+df = pd.read_csv('testneighborlist.csv', header=None, delim_whitespace=True, names='Col_1 Col_2 Col_3 Col_4 Col_5 Col_6 Col_7 Col_8 Col_9 Col_10 Col_11 Col_12 Col_13 Col_14 Col_15 Col_16 Col_17 Col_18 Col_19 Col_20 Col_21'.split(' '))
+df = pd.read_csv('testneighborlist.csv', index=np.arange(5), columns=np.arange(20), delim_whitespace=True)
+df.head()
+df1 = df.drop(['Col_1', 'Col_2', 'Col_3', 'Col_4', 'Col_5', 'Col_7', 'Col_9', 'Col_11', 'Col_13', 'Col_15', 'Col_17', 'Col_19', 'Col_21' ], axis=1)
+df2 = df1.min()
+for i in range(0,1):
+    print(i)
+    shortest_distance = df2[i]
+    print(shortest_distance)
+    cellvalue = df[df.isin([shortest_distance])].stack()
+    print(cellvalue[i,i-1])
